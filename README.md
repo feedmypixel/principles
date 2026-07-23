@@ -1,11 +1,18 @@
-# claude-principles
+# principles
 
-The canonical engineering principles I build to — CSS, forms, progressive enhancement, UX, testing — packaged as a
-Claude Code plugin so any repo can opt in, and an update in one place flows to all of them.
+The canonical engineering principles I build to — components, content, CSS, forms, grid, progressive enhancement, UX, testing, PR discipline — packaged as a Claude Code plugin so any repo can opt in, and an update in one place flows to all of them.
 
 **Rules are portable; values are per-product.** Each principle carries the rule + the reasoning (and at most a worked
 example scale, clearly marked). Pull the concrete numbers from the consuming repo's own `tokens.css` — never copy values
 between products.
+
+## Contents
+
+- [What's inside](#whats-inside)
+- [Install (opt-in, per repo)](#install-opt-in-per-repo)
+- [Updating](#updating)
+- [Why a plugin (not symlinks, not global)](#why-a-plugin-not-symlinks-not-global)
+- [How they're written](#how-theyre-written)
 
 ## What's inside
 
@@ -26,16 +33,13 @@ Each principle is a skill (loaded on demand, when a task touches that area):
 
 ## Install (opt-in, per repo)
 
-This is a **local-first** marketplace — no public publish required. Add it once, then enable it only in the repos you
-want:
+This plugin lives in the [`claude`](../README.md) repo, which doubles as a **local marketplace** — no public publish
+required. Add the marketplace once, then enable the plugin only in the repos you want:
 
 ```bash
-# from a local clone…
-/plugin marketplace add ~/Projects/claude-principles
-# …or from the private GitHub repo
-/plugin marketplace add feedmypixel/claude-principles
+/plugin marketplace add ~/Projects/claude
 
-/plugin install claude-principles
+/plugin install principles@claude
 ```
 
 Enable scope:
@@ -47,21 +51,18 @@ Work repos simply don't install it — zero footprint.
 
 ## Updating
 
-One source of truth, one push, a refresh per repo:
+One source of truth, one commit, a refresh per repo:
 
 1. Edit a skill here (the rule changes here **first**, then flows to the products).
 2. **Bump `version` in `.claude-plugin/plugin.json`** — `/plugin update` is version-keyed; content changes
    without a bump report "nothing to update".
-3. `git commit && git push`.
+3. `git commit`.
 4. In each consuming repo, two separate commands (slash commands can't be `&&`-chained):
-   `/plugin marketplace update claude-principles`, then `/plugin update claude-principles`.
+   `/plugin marketplace update claude`, then `/plugin update principles`.
 5. Fresh session (or `/clear`) — the skill list is snapshotted at session start.
 
-How the update lands depends on how the marketplace was added (`/plugin marketplace list` shows the source):
-
-- **Local path** (`~/Projects/claude-principles`) — update reads the directory on disk. Unpushed commits (and any
-  untracked files under `skills/`) ship as-is.
-- **GitHub** (`feedmypixel/claude-principles`) — update pulls the remote, so push first or nothing new arrives.
+The marketplace is a **local path** (`~/Projects/claude`), so update reads the directory on disk — uncommitted edits and
+untracked files under `skills/` ship as-is.
 
 ## Why a plugin (not symlinks, not global)
 
