@@ -1,6 +1,6 @@
 ---
 name: components
-description: Read before creating or changing any UI component: inventory-first reuse, the new-vs-variant-vs-composition decision, lifting shared components, token discipline for family parity, component groups. The lego-brick discipline.
+description: Read before creating or changing any UI component: decompose the design first, inventory-first reuse, the new-vs-variant-vs-composition decision, right-sized components, logic/display separation, lifting shared components, token discipline for family parity, component groups. The lego-brick discipline.
 ---
 
 # Components
@@ -13,6 +13,19 @@ exists at all, and where it lives.
 > **The product's design system is the source of truth.** Where the consuming product ships
 > its own design system — tokens, components, naming — build with and extend that. Everything
 > here is the portable discipline around it.
+
+## Decompose the design first
+
+**Before building anything, slice the design into components on paper.** Look over the whole
+design, draw boxes around the logical chunks — nav, card, filter bar — and name them. Then
+build the pieces, then assemble. The pieces are the building blocks; pages become composition,
+not construction.
+
+- **Target medium-sized logical blocks** — a product card, a page header. Not a page-sized
+  monolith, not a component per HTML tag.
+- Each named box then goes through the inventory check below — decomposition tells you what
+  you need; inventory tells you what already exists.
+- If you can't name a box in a word or two, the boundary is probably wrong — re-slice.
 
 ## Inventory first — the hard rule
 
@@ -44,6 +57,26 @@ Work down this list; take the **first** match:
 **The variant-bloat guard:** when variants multiply until the component is a pile of
 conditionals, or two variants share almost nothing but a name — split. One component
 straining to be two things is as wrong as two components pretending to be one.
+
+## Right-sized — split when it hurts, not before
+
+Component boundaries earn their cost. **Split on a real symptom, not on principle:**
+
+- **Split when** the file is hard to hold in your head, the same markup repeats within it,
+  or one part changes for reasons the rest doesn't (single responsibility — one job each).
+- **Don't split** just because a component "feels long" or to make the tree look tidy.
+  Over-fragmentation — a component per tag, prop-drilling through layers that add nothing —
+  costs more than a slightly big component. A wrong abstraction is worse than duplication.
+
+## Logic and display — keep them apart
+
+**A component that fetches data, runs business logic, _and_ renders complex markup is doing
+three jobs.** Keep data-loading and state in thin container/page-level code; display
+components take simple props and render.
+
+- Display components are the reusable ones — pure input → markup, trivially testable.
+- Containers are per-use wiring — they rarely repeat, so they rarely need extracting.
+- When a display component starts reaching out for its own data, that's the seam to split at.
 
 ## Where a component lives — lift on second use
 
@@ -84,7 +117,10 @@ Some components aren't standalone — they travel as a **group** with shared voc
 
 ## Red flags — stop and check
 
+- Building a page top-to-bottom without having sliced the design into components first.
 - Writing a component without having listed the existing ones.
+- A component per HTML tag — over-fragmentation; boundaries need a reason.
+- A display component fetching its own data — logic and display split at the wrong seam.
 - A px/hex value in a component style — token missing or ignored.
 - Copy-pasting a component to change one thing — that's a variant.
 - Importing from another consumer's nested folder — that's a lift.
