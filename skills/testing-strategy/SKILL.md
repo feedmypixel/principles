@@ -1,6 +1,6 @@
 ---
 name: testing-strategy
-description: Read before writing tests or shaping a test suite: pyramid vs trophy, confidence-per-cost, e2e for critical flows only, integration (real DB, no mocks) as the bulk, test behaviour not implementation.
+description: "Read before writing tests or shaping a test suite: pyramid vs trophy, confidence-per-cost, e2e for critical flows only, integration (real DB, no mocks) as the bulk, test behaviour not implementation."
 ---
 
 # Testing strategy

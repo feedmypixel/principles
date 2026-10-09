@@ -1,6 +1,6 @@
 ---
 name: progressive-enhancement
-description: Read before building interactive features: resilience, speed, share-don't-duplicate, the works-without-JS subset. Best-practice default, not a mandate.
+description: "Read before building interactive features: resilience, speed, share-don't-duplicate, the works-without-JS subset. Best-practice default, not a mandate."
 ---
 
 # Progressive enhancement

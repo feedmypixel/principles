@@ -1,6 +1,6 @@
 ---
 name: components
-description: Read before creating or changing any UI component: decompose the design first, inventory-first reuse, the new-vs-variant-vs-composition decision, right-sized components, logic/display separation, lifting shared components, token discipline for family parity, component groups. The lego-brick discipline.
+description: "Read before creating or changing any UI component: decompose the design first, inventory-first reuse, the new-vs-variant-vs-composition decision, right-sized components, logic/display separation, lifting shared components, token discipline for family parity, component groups. The lego-brick discipline."
 ---
 
 # Components

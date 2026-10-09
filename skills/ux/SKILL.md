@@ -1,6 +1,6 @@
 ---
 name: ux
-description: Read before designing any interaction: never dead-end the user, one clear primary action, respect the user's current state. Cross-cutting.
+description: "Read before designing any interaction: never dead-end the user, one clear primary action, respect the user's current state. Cross-cutting."
 ---
 
 # UX
