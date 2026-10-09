@@ -39,22 +39,20 @@ From most-confidence-per-cost downward:
 - **Push coverage down.** Before writing an e2e, ask whether an integration or unit test would catch the same regression cheaper. Usually it would.
 - **The expensive layer stays thin on purpose.** Resisting the urge to grow e2e is a discipline, not an oversight. More e2e = slower CI, more flakes, more maintenance — for confidence the cheaper layers already bought.
 
-## How stat applies it
+## Worked example — a typical web-app mapping
 
-The four CI/test layers map straight onto the model:
+**An example instantiation, not a mandate** — map your own stack onto the layers:
 
-| Layer           | Stat instantiation                                                                                       | Scope                 |
-| --------------- | -------------------------------------------------------------------------------------------------------- | --------------------- |
-| **Static**      | `tsc` / `svelte-check` + ESLint (both repos)                                                             | every file            |
-| **Unit**        | Vitest — server (Node) + client (browser component) projects                                             | broad                 |
-| **Integration** | `stat-api` integration tests against a **real Postgres** service container (e2e-CI Layer 1)              | the bulk of behaviour |
-| **e2e**         | Playwright — full suite locally pre-PR; the `@smoke`-tagged **critical path** cross-repo in CI (Layer 3) | critical flows only   |
+| Layer           | Example instantiation                                                                   | Scope                 |
+| --------------- | --------------------------------------------------------------------------------------- | --------------------- |
+| **Static**      | `tsc` / framework check + ESLint                                                        | every file            |
+| **Unit**        | Vitest — server (Node) + client (browser component) projects                            | broad                 |
+| **Integration** | API tests against a **real database** service container in CI                           | the bulk of behaviour |
+| **e2e**         | Playwright — full suite locally pre-PR; a `@smoke`-tagged **critical path** set in CI   | critical flows only   |
 
-- The **`@smoke` tag** marks the critical-flow e2e specs — they're part of the normal e2e suite (not a separate folder); CI runs `--grep @smoke`. The smoke set grows **one spec per cross-repo critical path** as features land (sign-up, friends, invites, feed, channels), never a mirror of the full suite. See `tasks/prd-e2e-ci.md`.
-- Integration coverage lives in `stat-api` against real Postgres — that's the fat middle, by design.
+- The **`@smoke` tag pattern**: critical-flow e2e specs live in the normal e2e suite (not a separate folder); CI runs `--grep @smoke`. The smoke set grows **one spec per critical path** as features land — never a mirror of the full suite.
 
 ## References
 
 - Martin Fowler — _The Practical Test Pyramid_.
 - Kent C. Dodds — _The Testing Trophy and Testing Classifications_ (_"Write tests. Not too many. Mostly integration."_).
-- `tasks/prd-e2e-ci.md` — the CI layering + the smoke mechanics that implement this stance.

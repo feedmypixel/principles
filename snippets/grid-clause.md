@@ -12,7 +12,7 @@ values as rules into a product that has its own system puts the two in permanent
 
 ## Grid — non-negotiable
 
-<!-- source: claude-principles/snippets/grid-clause.md — edit there first -->
+<!-- source: github.com/feedmypixel/principles · snippets/grid-clause.md — edit there first -->
 
 **The grid contract is `<path to the product's grid doc, e.g. docs/design/grid.md>`** — its
 columns, gutters, wells, breakpoints, and spacing tokens are the only valid values. Read it

@@ -1,0 +1,13 @@
+{
+  "name": "principles",
+  "owner": {
+    "name": "feedmypixel"
+  },
+  "plugins": [
+    {
+      "name": "principles",
+      "source": "./",
+      "description": "Portable web/engineering principles as on-demand skills (components, content, CSS, docs, forms, grid, progressive enhancement, UX, testing, PR discipline)."
+    }
+  ]
+}

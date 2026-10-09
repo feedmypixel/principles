@@ -1,6 +1,6 @@
 # Grid Principles for Web Design
 
-<!-- source: claude-principles/snippets/grid-principles-full.md — edit there first. Full doc for surfaces that can't load the grid skill (e.g. Claude Design); Claude Code repos use the plugin's grid skill + snippets/grid-clause.md instead. -->
+<!-- source: github.com/feedmypixel/principles · snippets/grid-principles-full.md — edit there first. Full doc for surfaces that can't load the grid skill (e.g. Claude Design); Claude Code repos use the plugin's grid skill + snippets/grid-clause.md instead. -->
 
 > **Only for products WITHOUT their own grid contract.** If the product has a grid doc /
 > design-system tokens (columns, gutters, wells, spacing scale), paste THAT instead — its

@@ -1,6 +1,6 @@
 # principles
 
-The canonical engineering principles I build to — components, content, CSS, forms, grid, progressive enhancement, UX, testing, PR discipline — packaged as a Claude Code plugin so any repo can opt in, and an update in one place flows to all of them.
+Portable web/engineering principles — components, content, CSS, docs, forms, grid, progressive enhancement, UX, testing, PR discipline — packaged as a Claude Code plugin. Each principle loads as a skill, on demand, when a task touches that area.
 
 **Rules are portable; values are per-product.** Each principle carries the rule + the reasoning (and at most a worked
 example scale, clearly marked). Pull the concrete numbers from the consuming repo's own `tokens.css` — never copy values
@@ -9,18 +9,16 @@ between products.
 ## Contents
 
 - [What's inside](#whats-inside)
-- [Install (opt-in, per repo)](#install-opt-in-per-repo)
+- [Install](#install)
 - [Updating](#updating)
-- [Why a plugin (not symlinks, not global)](#why-a-plugin-not-symlinks-not-global)
 - [How they're written](#how-theyre-written)
+- [License](#license)
 
 ## What's inside
 
-Each principle is a skill (loaded on demand, when a task touches that area):
-
 | Skill                     | Covers                                                                                                                                         |
 |---------------------------|------------------------------------------------------------------------------------------------------------------------------------------------|
-| `components`              | inventory-first reuse, new-vs-variant-vs-composition, lifting on second use, family parity through tokens — the lego-brick discipline          |
+| `components`              | decompose the design first, inventory-first reuse, new-vs-variant-vs-composition, right-sizing, logic/display split, family parity through tokens |
 | `content`                 | UI copy — sentence case, the GOV.UK full-stop rule, verb-first errors, buttons that say what they do, one term per thing                       |
 | `css`                     | architecture, the component/utility boundary, rem units, the scales, vertical rhythm                                                           |
 | `docs`                    | repo documentation — TOCs kept current, brevity, heading discipline, sparing callouts, descriptive links                                       |
@@ -31,15 +29,17 @@ Each principle is a skill (loaded on demand, when a task touches that area):
 | `ux`                      | never dead-end the user, one clear primary action, respect the user's state, buttons do / links go                                             |
 | `testing-strategy`        | pyramid vs trophy, confidence-per-cost, e2e for critical flows only, integration (real DB, no mocks) as the bulk, behaviour not implementation |
 
-## Install (opt-in, per repo)
+`snippets/` holds paste-into-context versions of the grid rules for surfaces that can't load skills
+(e.g. Claude Design project instructions).
 
-This plugin lives in the [`claude`](../README.md) repo, which doubles as a **local marketplace** — no public publish
-required. Add the marketplace once, then enable the plugin only in the repos you want:
+## Install
+
+Add the marketplace once, then enable the plugin per repo:
 
 ```bash
-/plugin marketplace add ~/Projects/claude
+/plugin marketplace add feedmypixel/principles
 
-/plugin install principles@claude
+/plugin install principles@principles
 ```
 
 Enable scope:
@@ -47,32 +47,25 @@ Enable scope:
 - **local** (`.claude/settings.local.json`, gitignored) — just you, just this repo.
 - **project** (`.claude/settings.json`, committed) — anyone who clones the repo inherits it.
 
-Work repos simply don't install it — zero footprint.
+Repos that don't install it — zero footprint. That's the point of a plugin over global config:
+opt-in per repo, versioned, updatable from one place.
 
 ## Updating
 
-One source of truth, one commit, a refresh per repo:
+```bash
+/plugin marketplace update principles
 
-1. Edit a skill here (the rule changes here **first**, then flows to the products).
-2. **Bump `version` in `.claude-plugin/plugin.json`** — `/plugin update` is version-keyed; content changes
-   without a bump report "nothing to update".
-3. `git commit`.
-4. In each consuming repo, two separate commands (slash commands can't be `&&`-chained):
-   `/plugin marketplace update claude`, then `/plugin update principles`.
-5. Fresh session (or `/clear`) — the skill list is snapshotted at session start.
+/plugin update principles
+```
 
-The marketplace is a **local path** (`~/Projects/claude`), so update reads the directory on disk — uncommitted edits and
-untracked files under `skills/` ship as-is.
-
-## Why a plugin (not symlinks, not global)
-
-- **Symlinks** are per-machine and break on clone.
-- **Global `~/.claude/`** applies everywhere — wrong for principles a work repo shouldn't get.
-- A plugin is **opt-in per repo**, **versioned**, and **updatable from one place**. The always-on bits (the
-  comment-discipline hook, the global `CLAUDE.md`) stay global by design — they're wanted everywhere; these principles
-  are the deeper, opt-in layer beneath them.
+(Two separate commands — slash commands can't be `&&`-chained.) Then a fresh session or `/clear` —
+the skill list is snapshotted at session start.
 
 ## How they're written
 
 Living documents, forged while building — not authored up front. When building reveals a better rule or a gap, the doc
-changes here first, then flows out to the products.
+changes here first, then flows out to the products. Sections still settling are marked **WIP** or **Draft** inline.
+
+## License
+
+[MIT](LICENSE).
