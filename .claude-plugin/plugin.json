@@ -1,6 +1,6 @@
 {
   "name": "principles",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Portable engineering principles (components, content, CSS, docs, forms, grid, progressive enhancement, UX, testing, PR discipline) as on-demand skills. Rules are portable; values stay per-product in each repo's tokens.css.",
   "author": {
     "name": "feedmypixel"

@@ -1,6 +1,6 @@
 ---
 name: css
-description: Read before writing or refactoring CSS/styles: architecture, the component-vs-utility boundary, rem units, type/space scales, vertical rhythm. Portable rules — pull concrete values from the project's own tokens.css.
+description: "Read before writing or refactoring CSS/styles: architecture, the component-vs-utility boundary, rem units, type/space scales, vertical rhythm. Portable rules — pull concrete values from the project's own tokens.css."
 ---
 
 # CSS architecture

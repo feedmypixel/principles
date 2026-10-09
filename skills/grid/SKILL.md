@@ -1,6 +1,6 @@
 ---
 name: grid
-description: Read before building any page or section layout: grid anatomy (columns, gutters, margins, max width), hierarchy through column spans, responsive reflow, breaking the grid intentionally. Portable rules — pull concrete values from the project's own tokens.css.
+description: "Read before building any page or section layout: grid anatomy (columns, gutters, margins, max width), hierarchy through column spans, responsive reflow, breaking the grid intentionally. Portable rules — pull concrete values from the project's own tokens.css."
 ---
 
 # Grid
