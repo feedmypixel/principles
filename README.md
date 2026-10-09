@@ -1,6 +1,11 @@
 # principles
 
-Portable web/engineering principles — components, content, CSS, docs, forms, grid, progressive enhancement, UX, testing, PR discipline — packaged as a Claude Code plugin. Each principle loads as a skill, on demand, when a task touches that area.
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Claude Code plugin](https://img.shields.io/badge/Claude%20Code-plugin-d97757.svg)](https://docs.claude.com/en/docs/claude-code/plugins)
+
+**Make Claude Code build to your engineering principles — loaded on demand, not crammed into context.**
+
+Portable web/engineering principles — components, content, CSS, docs, forms, grid, progressive enhancement, UX, testing, PR discipline — packaged as a Claude Code plugin. Each principle is a skill: it loads only when a task touches that area (writing CSS pulls in the css skill, raising a PR pulls in pull-requests), so sessions carry the rules they need and none they don't.
 
 **Rules are portable; values are per-product.** Each principle carries the rule + the reasoning (and at most a worked
 example scale, clearly marked). Pull the concrete numbers from the consuming repo's own `tokens.css` — never copy values
