@@ -3,11 +3,17 @@
   "owner": {
     "name": "feedmypixel"
   },
+  "description": "Portable engineering principles and a measurable design-to-code workflow, as on-demand Claude Code skills.",
   "plugins": [
     {
       "name": "principles",
-      "source": "./",
+      "source": "./principles",
       "description": "Portable web/engineering principles as on-demand skills (components, content, CSS, docs, forms, grid, progressive enhancement, UX, testing, PR discipline)."
+    },
+    {
+      "name": "design-to-code",
+      "source": "./design-to-code",
+      "description": "Turn a design handoff (Claude Design or any self-contained HTML mocks) into production code via a measurable extract → diff → fix loop that refuses to report done without evidence."
     }
   ]
 }
