@@ -23,6 +23,12 @@ The failure it prevents: every audit row ticked with file:line evidence, every r
 
 One skill (`design-to-code`) covering: intake checks (is the bundle machine-comparable?), the element map, Playwright-driven extraction, diff tolerances, the fix loop with capped iterations and reasoned waivers, a paired mock-beside-build gallery for what numbers can't catch, honest reporting language, and the whole standing installation the loop runs inside - seeded surfaces, pinned mocks, waiver hygiene, a drops round-trip back to the designer, and the diff as a CI gate.
 
+**Plus reference implementations**, so setup is a copy rather than a build
+([`reference/`](./skills/design-to-code/reference/)): `extract.mjs` and `diff.mjs` drop in unchanged,
+`design-check.mjs` adapts to your app through two small contracts (boot + seeds), and
+[`SETUP.md`](./skills/design-to-code/reference/SETUP.md) walks the whole thing - element map schema, CI
+wiring, how to read the output. Point Claude Code at SETUP.md in a fresh repo and it can stand the loop up.
+
 Pairs well with the [`principles`](../principles/README.md) plugin — its progressive-enhancement, grid, components, and testing-strategy skills cover what the mock can't show.
 
 ## Install

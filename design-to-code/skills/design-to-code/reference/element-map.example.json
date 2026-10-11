@@ -1,0 +1,51 @@
+{
+  "home": {
+    "viewports": [375, 1280],
+    "mock": "design/mocks-pinned/Home.html",
+    "mockFrame": ".frame-1280",
+    "builtRoute": "/",
+    "elements": {
+      "page.title": {
+        "mock": ".home h2",
+        "built": "main h1"
+      },
+      "card": {
+        "mock": ".feed .card",
+        "built": ".feed .post-card",
+        "exact": ["box.height"],
+        "origin": { "mock": ".feed", "built": ".feed" }
+      },
+      "card.caption": {
+        "mock": ".feed .card .cap",
+        "built": ".feed .post-card .caption",
+        "ignore": {
+          "text": "mock shows sample copy; seeded data differs by design"
+        }
+      },
+      "card.meta": {
+        "mock": ".feed .card .meta",
+        "built": ".feed .post-card .meta"
+      },
+      "rail": {
+        "mock": ".rail",
+        "built": "nav.rail",
+        "waiver": "desktop rail ships in the next milestone; tracked in the plan"
+      }
+    }
+  },
+  "home-dark": {
+    "viewports": [375],
+    "mock": "design/mocks-pinned/Home Dark.html",
+    "mockFrame": ".frame-375",
+    "builtRoute": "/",
+    "colorScheme": "dark",
+    "gate": false,
+    "gateNote": "dark theme still converging; report, do not fail CI yet",
+    "elements": {
+      "page.title": {
+        "mock": ".home h2",
+        "built": "main h1"
+      }
+    }
+  }
+}

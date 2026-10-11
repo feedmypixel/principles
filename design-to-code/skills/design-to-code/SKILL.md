@@ -96,6 +96,10 @@ the same browser, `page.evaluate` `getComputedStyle` + child inspection per mapp
 shape from both worlds. The same harness drives the paired-gallery screenshots (step 5) and runs the diff as a test
 in CI (step 6) — one dependency for the whole loop, and one the project's e2e suite likely already has.
 
+**Do not write the extraction or diff from scratch — this skill ships them.** `reference/extract.mjs` and
+`reference/diff.mjs` are drop-in; `reference/design-check.mjs` is the orchestrator with two seams to implement
+(app boot, seeds); `reference/SETUP.md` is the walkthrough. Copy them into the project and adapt the seams.
+
 ## Step 3 — diff, with honest tolerances
 
 | kind | tolerance | why |
@@ -150,12 +154,17 @@ design/
   element-map.json      # grows per handoff; maintained like code
   mocks-pinned/         # stable reference copies — the diff target must not drift silently
   vNN/                  # each bundle kept (or recoverable) — provenance for every ruling
-scripts/
+scripts/design/
   design-check.mjs      # boots the app, seeds state, extracts both worlds, diffs
-  design/seed.mjs       # one seed per surface — every state the design shows, producible on demand
-  design/extract.mjs    # the shared extraction (same shape from mock and build)
-  design/diff.mjs       # tolerances + waivers
+  seeds.mjs             # one seed per surface — every state the design shows, producible on demand
+  extract.mjs           # the shared extraction (same shape from mock and build)
+  diff.mjs              # tolerances + waivers
 ```
+
+**Setting this up is a copy, not a build:** `reference/` in this skill ships `extract.mjs` and `diff.mjs`
+drop-in, `design-check.mjs` to adapt, an element-map example, and `SETUP.md` — the step-by-step walkthrough
+covering the boot and seed contracts, CI wiring, and the map schema. Only the seeds and the app boot are
+project-specific.
 
 - **Seeds are not optional.** The check boots the app and seeds each surface's exact state — empty, three
   items, error, first-run. Extracting from whatever state the dev server happens to be in produces
