@@ -91,6 +91,11 @@ Structure matters as much as type: *"meta rows: mock 1, built 2"* is the defect 
 
 Capture at every viewport in the map, and in every theme the project ships.
 
+**Tooling: Playwright is the natural harness.** Load the mock (`file://` or a static server) and the built page in
+the same browser, `page.evaluate` `getComputedStyle` + child inspection per mapped selector, and emit the same JSON
+shape from both worlds. The same harness drives the paired-gallery screenshots (step 5) and runs the diff as a test
+in CI (step 6) — one dependency for the whole loop, and one the project's e2e suite likely already has.
+
 ## Step 3 — diff, with honest tolerances
 
 | kind | tolerance | why |
