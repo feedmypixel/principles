@@ -7,7 +7,7 @@ import { diffSpecs } from './diff.mjs'
 import { bootApp } from './server.mjs'
 import { seedBySurface } from './seeds.mjs'
 
-const ROOT = join(import.meta.dirname, '..')
+const ROOT = join(import.meta.dirname, '../..')
 const elementMap = JSON.parse(readFileSync(join(ROOT, 'design/element-map.json'), 'utf8'))
 
 const requestedSurfaces = process.argv.slice(2)
