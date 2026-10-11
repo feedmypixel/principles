@@ -140,6 +140,38 @@ Numbers miss: visual balance, whether the eye lands in the right place, whether 
 - **The element map and the waivers live in the repo**, reviewed like code.
 - **A new bundle re-extracts the spec.** The target moves when the designer moves it, automatically — nobody transcribes numbers by hand.
 
+## The whole system
+
+The loop is one moving part of a standing installation. A one-off diff against hand-clicked app state
+produces noise, and noise gets waived. What a working installation looks like:
+
+```
+design/
+  element-map.json      # grows per handoff; maintained like code
+  mocks-pinned/         # stable reference copies — the diff target must not drift silently
+  vNN/                  # each bundle kept (or recoverable) — provenance for every ruling
+scripts/
+  design-check.mjs      # boots the app, seeds state, extracts both worlds, diffs
+  design/seed.mjs       # one seed per surface — every state the design shows, producible on demand
+  design/extract.mjs    # the shared extraction (same shape from mock and build)
+  design/diff.mjs       # tolerances + waivers
+```
+
+- **Seeds are not optional.** The check boots the app and seeds each surface's exact state — empty, three
+  items, error, first-run. Extracting from whatever state the dev server happens to be in produces
+  unrepeatable diffs, and unrepeatable diffs kill trust in the gate.
+- **Pin the mocks you diff against.** A bundle file that gets edited, re-exported, or tidied moves the target
+  mid-loop. Copy the reference mocks somewhere append-only.
+- **Waivers are maintained in both directions.** Add one when a difference is intended; **delete it the moment
+  measurement improves or a new bundle resolves it** — a stale waiver masking a real defect is the gate
+  quietly going blind.
+- **The handoff is a round trip.** Where the render is ambiguous or the build exposes a question the design
+  never answered, package build captures + the questions *back* to the designer as a drop of its own. One-way
+  consumption is how ambiguity becomes a silent guess.
+- **Expect the map to grow.** Hundreds of surfaces across viewports and themes is normal at maturity; each
+  handoff adds its increment. The map is an asset, not overhead — it is what makes handoff N+1 cheaper
+  than handoff N.
+
 ## Reporting
 
 Never "it renders", never "first pass", never "matches the design". State the gate first, then counts:
